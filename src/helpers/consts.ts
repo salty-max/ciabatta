@@ -1,6 +1,11 @@
 export const CELL_SIZE = 16;
 export const SPRITESHEET_SRC = "/ciabattas-revenge-sprites.png";
 
+export enum NODE_TYPE {
+  HERO,
+  GOAL,
+}
+
 export enum LEVEL_THEME {
   YELLOW,
   BLUE,
