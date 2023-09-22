@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Sprite from "./components/object-graphics/Sprite";
 import { SPRITESHEET_SRC } from "./helpers/consts";
+import RenderLevel from "./components/level-layout/RenderLevel";
 
 function App() {
   const [spritesheetImage, setSpritesheetImage] =
@@ -16,13 +16,7 @@ function App() {
     return null;
   }
 
-  return (
-    <div>
-      <Sprite image={spritesheetImage} frameCoord="1x0" />
-      <Sprite image={spritesheetImage} frameCoord="0x2" />
-      <Sprite image={spritesheetImage} frameCoord="0x3" />
-    </div>
-  );
+  return <RenderLevel spritesheetImage={spritesheetImage} />;
 }
 
 export default App;
