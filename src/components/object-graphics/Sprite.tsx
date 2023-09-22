@@ -9,7 +9,6 @@ export interface SpriteProps {
 }
 
 function Sprite({ image, frameCoord, size = 16 }: SpriteProps) {
-  console.log(image);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
