@@ -1,5 +1,7 @@
 import { LEVEL_THEME, NODE_TYPE } from "../helpers/consts";
+import { HeroNode } from "../nodes/HeroNode";
 import { Node } from "../nodes/Node";
+import { DirectionControls } from "./DirectionControls";
 import { GameLoop } from "./GameLoop";
 import { nodeFactory } from "./NodeFactory";
 
@@ -19,12 +21,17 @@ export class Level {
   private _tilesHeight!: number;
   private _nodes: (Node | null)[] = [];
   private _gameloop?: GameLoop;
+  private _heroRef?: HeroNode;
+
+  private _directionControls: DirectionControls;
 
   public onEmit: LevelStateHandler;
 
   constructor(levelId: string, onEmit: LevelStateHandler) {
     this._id = levelId;
     this.onEmit = onEmit;
+
+    this._directionControls = new DirectionControls();
 
     this.start();
   }
@@ -44,6 +51,11 @@ export class Level {
       return nodeFactory.createNode(config, this.getState());
     });
 
+    // Cache a reference to the hero
+    this._heroRef = this._nodes.find(
+      (node) => node?.type === NODE_TYPE.HERO,
+    ) as HeroNode | undefined;
+
     this.startGameLoop();
   }
 
@@ -55,6 +67,12 @@ export class Level {
   }
 
   tick() {
+    // Check for movement
+    if (this._directionControls.direction) {
+      this._heroRef?.move(this._directionControls.direction);
+    }
+
+    // Call `tick` on any node that want to tick
     this._nodes.forEach((node) => {
       node?.tick();
     });
@@ -73,6 +91,7 @@ export class Level {
   }
 
   destroy() {
-    // Tear down the level
+    this._gameloop?.stop();
+    this._directionControls.unbind();
   }
 }

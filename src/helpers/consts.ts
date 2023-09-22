@@ -1,6 +1,20 @@
 export const CELL_SIZE = 16;
 export const SPRITESHEET_SRC = "/ciabattas-revenge-sprites.png";
 
+export enum DIRECTION {
+  UP = "UP",
+  DOWN = "DOWN",
+  LEFT = "LEFT",
+  RIGHT = "RIGHT",
+}
+
+export const directionUpdateMap: Record<DIRECTION, { x: number; y: number }> = {
+  [DIRECTION.UP]: { x: 0, y: -1 },
+  [DIRECTION.DOWN]: { x: 0, y: 1 },
+  [DIRECTION.LEFT]: { x: -1, y: 0 },
+  [DIRECTION.RIGHT]: { x: 1, y: 0 },
+};
+
 export enum NODE_TYPE {
   HERO,
   GOAL,
