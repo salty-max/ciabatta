@@ -4,12 +4,10 @@ import { Level } from "./RenderLevel";
 
 export interface LevelBackgroundTilesLayerProps {
   level: Level;
-  image: HTMLImageElement;
 }
 
 export default function LevelBackgroundTilesLayer({
   level,
-  image,
 }: LevelBackgroundTilesLayerProps) {
   const widthWithWalls = level.tilesWidth + 1;
   const heightWithWalls = level.tilesHeight + 1;
@@ -43,7 +41,6 @@ export default function LevelBackgroundTilesLayer({
       canvases.push(
         <MapCell
           key={`${x}_${y}`}
-          image={image}
           x={x}
           y={y}
           frameCoord={getBackgroundTile(x, y)}

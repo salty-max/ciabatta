@@ -1,10 +1,6 @@
-import {
-  CELL_SIZE,
-  LEVEL_THEME,
-  THEME_BACKGROUNDS,
-} from "../../helpers/consts";
-import Sprite from "../object-graphics/Sprite";
+import { LEVEL_THEME, THEME_BACKGROUNDS } from "../../helpers/consts";
 import LevelBackgroundTilesLayer from "./LevelBackgroundTilesLayer";
+import LevelPlacementsLayer from "./LevelPlacementsLayer";
 import styles from "./RenderLevel.module.css";
 
 export interface Level {
@@ -21,11 +17,7 @@ export interface Placement {
   frameCoord: string;
 }
 
-export interface RenderLevelProps {
-  spritesheetImage: HTMLImageElement;
-}
-
-export default function RenderLevel({ spritesheetImage }: RenderLevelProps) {
+export default function RenderLevel() {
   const level: Level = {
     theme: LEVEL_THEME.YELLOW,
     tilesWidth: 9,
@@ -59,24 +51,8 @@ export default function RenderLevel({ spritesheetImage }: RenderLevelProps) {
       }}
     >
       <div className={styles.gameScreen}>
-        <LevelBackgroundTilesLayer level={level} image={spritesheetImage} />
-        {level.placements.map((placement) => {
-          const x = `${placement.x * CELL_SIZE}px`;
-          const y = `${placement.y * CELL_SIZE}px`;
-          const style = {
-            position: "absolute",
-            transform: `translate(${x}, ${y})`,
-          } as const;
-
-          return (
-            <div style={style} key={placement.id}>
-              <Sprite
-                image={spritesheetImage}
-                frameCoord={placement.frameCoord}
-              />
-            </div>
-          );
-        })}
+        <LevelBackgroundTilesLayer level={level} />
+        <LevelPlacementsLayer level={level} />
       </div>
     </div>
   );

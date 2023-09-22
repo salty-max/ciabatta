@@ -1,22 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { SPRITESHEET_SRC } from "./helpers/consts";
 import RenderLevel from "./components/level-layout/RenderLevel";
+import { useRecoilState } from "recoil";
+import { spritesheetAtom } from "./atoms/spritesheetAtom";
 
 function App() {
-  const [spritesheetImage, setSpritesheetImage] =
-    useState<HTMLImageElement | null>(null);
+  const [spritesheet, setSpritesheet] = useRecoilState(spritesheetAtom);
 
   useEffect(() => {
     const image = new Image();
     image.src = SPRITESHEET_SRC;
-    image.onload = () => setSpritesheetImage(image);
-  }, []);
+    image.onload = () => setSpritesheet(image);
+  }, [setSpritesheet]);
 
-  if (!spritesheetImage) {
+  if (!spritesheet) {
     return null;
   }
 
-  return <RenderLevel spritesheetImage={spritesheetImage} />;
+  return <RenderLevel />;
 }
 
 export default App;

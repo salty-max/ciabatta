@@ -5,10 +5,9 @@ export interface MapCellProps {
   x: number;
   y: number;
   frameCoord: string;
-  image: HTMLImageElement;
 }
 
-export default function MapCell({ x, y, frameCoord, image }: MapCellProps) {
+export default function MapCell({ x, y, frameCoord }: MapCellProps) {
   return (
     <div
       style={{
@@ -17,7 +16,7 @@ export default function MapCell({ x, y, frameCoord, image }: MapCellProps) {
         top: y * CELL_SIZE,
       }}
     >
-      <Sprite image={image} frameCoord={frameCoord} />
+      <Sprite frameCoord={frameCoord} />
     </div>
   );
 }
