@@ -3,7 +3,7 @@ import Sprite from "../components/object-graphics/Sprite";
 import { TILES } from "../helpers/tiles";
 
 export class GoalNode extends Node {
-  renderComponent(): JSX.Element {
+  draw(): JSX.Element {
     return <Sprite frameCoord={TILES.GOAL_DISABLED} />;
   }
 }

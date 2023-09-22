@@ -43,7 +43,9 @@ export class Node {
     this._level = level;
   }
 
-  renderComponent(): JSX.Element | null {
+  tick() {}
+
+  draw(): JSX.Element | null {
     return null;
   }
 }

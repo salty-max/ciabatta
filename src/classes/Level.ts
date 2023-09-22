@@ -1,5 +1,6 @@
 import { LEVEL_THEME, NODE_TYPE } from "../helpers/consts";
 import { Node } from "../nodes/Node";
+import { GameLoop } from "./GameLoop";
 import { nodeFactory } from "./NodeFactory";
 
 export interface LevelState {
@@ -17,6 +18,7 @@ export class Level {
   private _tilesWidth!: number;
   private _tilesHeight!: number;
   private _nodes: (Node | null)[] = [];
+  private _gameloop?: GameLoop;
 
   public onEmit: LevelStateHandler;
 
@@ -25,6 +27,10 @@ export class Level {
     this.onEmit = onEmit;
 
     this.start();
+  }
+
+  get id(): string {
+    return this._id;
   }
 
   start() {
@@ -37,10 +43,24 @@ export class Level {
     ].map((config) => {
       return nodeFactory.createNode(config, this.getState());
     });
+
+    this.startGameLoop();
   }
 
-  get id(): string {
-    return this._id;
+  startGameLoop() {
+    this._gameloop?.stop();
+    this._gameloop = new GameLoop(() => {
+      this.tick();
+    });
+  }
+
+  tick() {
+    this._nodes.forEach((node) => {
+      node?.tick();
+    });
+
+    // Emit any changes
+    this.onEmit(this.getState());
   }
 
   getState(): LevelState {

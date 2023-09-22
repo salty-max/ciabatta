@@ -19,7 +19,7 @@ export default function LevelPlacementsLayer({
 
     return (
       <div style={style} key={node.id}>
-        {node.renderComponent()}
+        {node.draw()}
       </div>
     );
   });
