@@ -1,0 +1,10 @@
+.hero {
+  position: relative;
+  background-color: aqua;
+}
+
+.heroBody {
+  position: absolute;
+  left: -8px;
+  top: -19px;
+}

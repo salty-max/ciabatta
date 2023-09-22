@@ -1,11 +1,10 @@
 import { Node } from "./Node";
-import Sprite from "../components/object-graphics/Sprite";
-import { TILES } from "../helpers/tiles";
+import Hero from "../components/object-graphics/Hero";
 
 export class HeroNode extends Node {
   tick() {}
 
   draw(): JSX.Element {
-    return <Sprite frameCoord={TILES.HERO_RIGHT} size={32} />;
+    return <Hero />;
   }
 }
