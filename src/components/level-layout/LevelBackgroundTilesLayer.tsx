@@ -1,9 +1,9 @@
+import { LevelState } from "../../classes/Level";
 import { THEME_TILES_MAP } from "../../helpers/consts";
 import MapCell from "./MapCell";
-import { Level } from "./RenderLevel";
 
 export interface LevelBackgroundTilesLayerProps {
-  level: Level;
+  level: LevelState;
 }
 
 export default function LevelBackgroundTilesLayer({

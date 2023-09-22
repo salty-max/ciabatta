@@ -1,9 +1,9 @@
-import { Level } from "./RenderLevel";
 import Sprite from "../object-graphics/Sprite";
 import { CELL_SIZE } from "../../helpers/consts";
+import { LevelState } from "../../classes/Level";
 
 export interface LevelPlacementsLayerProps {
-  level: Level;
+  level: LevelState;
 }
 
 export default function LevelPlacementsLayer({
