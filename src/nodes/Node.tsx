@@ -18,6 +18,22 @@ export class Node {
   protected _travelPixelsPerFrame: number;
   protected _movingPixelsRemaining: number;
   protected _movingDirection: DIRECTION;
+  protected _spriteFacingDirection: DIRECTION;
+  protected _spriteWalkFrame: number;
+
+  constructor(properties: NodeProperties, level: LevelState) {
+    this._id = properties.id;
+    this._x = properties.x;
+    this._y = properties.y;
+    this._type = properties.type;
+    this._level = level;
+
+    this._travelPixelsPerFrame = 1.5;
+    this._movingPixelsRemaining = 0;
+    this._movingDirection = DIRECTION.RIGHT;
+    this._spriteFacingDirection = DIRECTION.RIGHT;
+    this._spriteWalkFrame = 0;
+  }
 
   get id(): number {
     return this._id;
@@ -45,18 +61,6 @@ export class Node {
 
   get level(): LevelState {
     return this._level;
-  }
-
-  constructor(properties: NodeProperties, level: LevelState) {
-    this._id = properties.id;
-    this._x = properties.x;
-    this._y = properties.y;
-    this._type = properties.type;
-    this._level = level;
-
-    this._travelPixelsPerFrame = 1.5;
-    this._movingPixelsRemaining = 0;
-    this._movingDirection = DIRECTION.RIGHT;
   }
 
   tick() {}

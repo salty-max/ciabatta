@@ -25,7 +25,6 @@ export class DirectionControls {
       const dir = this.directionKeys[e.key];
       if (dir && !this.heldDirections.includes(dir)) {
         this.heldDirections.unshift(dir);
-        console.log(this.heldDirections);
       }
     };
 
@@ -34,7 +33,6 @@ export class DirectionControls {
       const idx = this.heldDirections.indexOf(dir);
       if (idx > -1) {
         this.heldDirections.splice(idx, 1);
-        console.log(this.heldDirections);
       }
     };
 

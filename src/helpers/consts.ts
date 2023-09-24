@@ -15,6 +15,19 @@ export const directionUpdateMap: Record<DIRECTION, { x: number; y: number }> = {
   [DIRECTION.RIGHT]: { x: 1, y: 0 },
 };
 
+export enum BODY_SKIN {
+  DEFAULT = "DEFAULT",
+  WATER = "WATER",
+  FIRE = "FIRE",
+  ICE = "ICE",
+  CONVEYOR = "CONVEYOR",
+  TELEPORT = "TELEPORT",
+  SCARED = "SCARED",
+}
+
+export const HERO_RUN_1 = "HERO_RUN_1";
+export const HERO_RUN_2 = "HERO_RUN_2";
+
 export enum NODE_TYPE {
   HERO,
   GOAL,
